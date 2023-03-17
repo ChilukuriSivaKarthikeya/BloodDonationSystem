@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood</title>
+    <style>
+        .home{
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            align-items: center;
+         }
+         .form{
+         position: relative;
+         top:55px;
+         width: 370px;
+         padding: 50px 30px;
+         border-radius: 7px;
+         background: rgb(252, 252, 252);
+         box-shadow: 7px 7px 20px rgba(0,0,0,0.05);
+       }
+        button{
+         height: 52px;
+         width:50%;
+         margin-left: 80px;
+         color: black;
+         text-align: center;
+         border-radius:30px;
+         font-size: 17px;
+         border:1px solid #999;
+         cursor: pointer;
+         margin-top: 10px;
+         background:-webkit-linear-gradient(right, #08e6ed,#86e206);
+         transition: 0.3s ease;
+       }
+    </style>
+</head>
+<body>
+    <div class="home">
+    <div class="form">
+    <a href="{% url 'search' %}"><button>search</button></a>
+    
+    <a href="{% url 'donate' %}"><button>Donate</button></a>
+</div>
+</div>
+</body>
+</html>

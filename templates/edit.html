@@ -1,0 +1,227 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Registration</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<style>
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  min-height: 100vh;
+  background-image:url("{% static 'images/register.jpg'%}");
+  background-repeat: no-repeat; 
+  background-size: 100% 100%;
+}
+.wrapper{
+  max-width: 800px;
+  width:100%;
+  padding: 20px 35px;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 7px 7px 10px rgba(0,0,0,0.15);
+}
+.wrapper header{
+  font-size: 25px;
+  font-weight: 500;
+  text-align: center;
+}
+.wrapper form{
+  margin: 35px 0 20px;
+}
+.avatar-upload {
+  position: relative;
+  max-width: 205px;
+  margin: 50px auto;
+}
+.avatar-upload .avatar-edit {
+  position: absolute;
+  right: 25px;
+  z-index: 1;
+  bottom: 10px;
+}
+.avatar-upload .avatar-edit input {
+  display: none;
+}
+.avatar-upload .avatar-edit input + label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 0;
+  border-radius: 100%;
+  background: #FFFFFF;
+  border: 1px solid transparent;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  font-weight: normal;
+  transition: all 0.2s ease-in-out;
+}
+.avatar-upload .avatar-edit input + label:hover {
+  background: #f1f1f1;
+  border-color: #d6d6d6;
+}
+
+.avatar-upload .avatar-preview {
+  width: 192px;
+  height: 192px;
+  position: relative;
+  border-radius: 100%;
+  border: 6px solid #F8F8F8;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+}
+.avatar-upload .avatar-preview > div {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+form .row{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0 12px 0;
+ 
+}
+form .row label{
+  font-size: 16px;
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+form .row .input_box{
+  width: 350px;
+  height: 100%;
+  margin-bottom: 15px;
+}
+form .row input{
+  outline: none;
+  resize: none;
+  height: 45px;
+  width:100%;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left:15px;
+  border: 1px solid #999;
+  border-bottom-width: 2px;
+  transition:all 0.3s ease;
+}
+form .row input::-webkit-scrollbar{
+  width: 0px;
+}
+form button{
+  color: #fff;
+  border: none;
+  width: 100%;
+  height: 50px;
+  margin-top: 20px;
+  font-size: 20px;
+  border-radius: 5px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  background: linear-gradient(-135deg, #c850c0, #4158d0);
+  transition: all 0.3s ease;
+}
+form button:hover{
+  background: linear-gradient(-135deg, #a5369e, #3c53c6);
+}
+form button:active{
+  transform: scale(0.95);
+}
+@media(max-width: 584px){
+ .wrapper{
+  max-width: 100%;
+}
+form .row .input-box{
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  form .row{
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+  .row::-webkit-scrollbar{
+    width: 5px;
+  }
+  }
+
+</style>
+</head>
+<body>
+    <div class="wrapper">
+    <header>Update Details</header>
+    <form id="photo" action="photoedit" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="avatar-upload">
+        <div class="avatar-edit">
+            <input type='file' id="imageUpload" name="image" accept=".png, .jpg, .jpeg" onchange="edit()"/>
+            <label for="imageUpload"><i class="fa fa-2x fa-camera"></i></label>
+        </div>
+        <div class="avatar-preview">
+            <div id="imagePreview" style="background-image: url('{{object.photo.url}}');">
+            </div>
+        </div>
+       </div>
+    </form>
+    <form action="edit" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+        <div class="row">
+        <div class="input_box">
+          <label>Name:</label>
+          <input type="text" name="name" value='{{object.name}}' required>
+        </div>
+        <div class="input_box">
+         <label>Blood Group:</label>
+         <input type="text" name="bloodgroup" value='{{object.bloodgroup}}' required>
+        </div>
+         <div class="input_box">
+          <label>Age:</label>
+          <input type="number" name="age" value='{{object.age}}' required>
+        </div>
+        <div class="input_box">
+          <label>Mobile:</label>
+          <input type="text" name="mobile" value='{{object.number}}' required>
+        </div>
+        <div class="input_box">
+          <label>Email:</label>
+          <input type="email" name="email" value='{{object.email}}' required>
+        </div>
+        <div class="input_box">
+          <label>village:</label>
+          <input type="text" name="village" value='{{object.village}}' required>
+        </div>
+        <div class="input_box">
+          <label>Mandal:</label>
+          <input type="text" name="mandal" value='{{object.mandal}}' required>
+        </div>
+        <div class="input_box">
+        <label>Pincode:</label>
+        <input type="text" name="pincode" value='{{object.pincode}}' required>
+        </div>
+        <button type="submit">save changes</button>
+    </div>
+    </form>
+  </div>
+</body>
+<script>
+function edit(){
+    document.getElementById("photo").submit();
+};
+</script>
+</html>

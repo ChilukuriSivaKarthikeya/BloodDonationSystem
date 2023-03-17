@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal - www.codingnepalweb.com -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Myprofile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+        *{
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Poppins', sans-serif;
+        }
+        body{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 100vh;
+          background: #81c2f3;
+        }
+        .wrapper,
+        .wrapper .img-area,
+        .social-icons a,
+        .buttons button{
+          background: #ecf0f3;
+          box-shadow: -3px -3px 7px #ffffff,
+                       3px 3px 5px #ceced1;
+        }
+        .wrapper{
+          position: relative;
+          width: 500px;
+          padding: 30px;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+        }
+        .wrapper .icon{
+          font-size: 17px;
+          color: #31344b;
+          position: absolute;
+          cursor: pointer;
+          opacity: 0.7;
+          top: 15px;
+          height: 35px;
+          width: 35px;
+          text-align: center;
+          line-height: 35px;
+          border-radius: 50%;
+          font-size: 16px;
+        }
+        .wrapper .icon i{
+          position: relative;
+          z-index: 9;
+        }
+        .wrapper .icon.arrow{
+          left: 15px;
+        }
+        .wrapper .icon.dots{
+          right: 15px;
+        }
+        .wrapper .img-area{
+          height: 150px;
+          width: 150px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .img-area .inner-area{
+          height: calc(100% - 10px);
+          width: calc(100% - 10px);
+          border-radius: 50%;
+        }
+        .inner-area img{
+          height: 100%;
+          width: 100%;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+        .wrapper .name{
+          text-align: left;
+          font-size: 16px;
+          font-weight: 400;
+          color: #31344b;
+          margin: 10px 0 5px 0;
+        }
+        .wrapper .icon:hover::before,
+        .buttons button:hover:before{
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          border-radius: 50%;
+          background: #ecf0f3;
+          box-shadow: inset -3px -3px 7px #ffffff,
+                      inset 3px 3px 5px #ceced1;
+        }
+        </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="img-area">
+      <div class="inner-area">
+        <img src="{{object.photo.url}}" alt="">
+      </div>
+    </div>
+    <div class="icon arrow"><a href="{% url 'user' %}" style="color:#31344b;"><i class="fas fa-arrow-left"></i></a></div>
+    <div class="icon dots"><a href="{% url 'edit' %}" style="color:#31344b;"><i class="fa fa-edit" ></i></a></div>
+    <div class="name"><b>Name:</b>{{object.name}}</div>
+    <div class="name"><b>Blood Group:</b>{{object.bloodgroup}}</div>
+    <div class="name"><b>Age:</b>{{object.age}}</div>
+    <div class="name"><b>Email Id:</b>{{object.email}}</div>
+    <div class="name"><b>Mobile:</b>{{object.number}}</div>
+    <div class="name"><b>Address:</b>{{object.village}},{{object.mandal}}</div>
+    <div class="name"><b>Pincode:</b>{{object.pincode}}</div>
+    {% if object.status == "True" %}
+     <div class="name"><b>Donate Status:</b>Active</div>
+    {% else %}
+     <div class="name"><b>Donate Status:</b>InActive</div>
+    {% endif %}
+    
+  </div>
+</body>
+</html>

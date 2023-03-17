@@ -1,0 +1,264 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <style>
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: montserrat;
+}
+nav{
+  background: linear-gradient(-135deg, #26a9fa, #232a4e);
+  height: 40px;
+  width: 100%;
+  position: sticky;
+}
+label.logo{
+  color: white;
+  font-size: 30px;
+  line-height: 40px;
+  padding: 0 100px;
+  font-weight: bold;
+}
+nav ul{
+  float: right;
+  margin-right: 20px;
+}
+nav ul li{
+  display: inline-block;
+  line-height: 40px;
+  margin: 0 5px;
+}
+nav ul li a{
+  color: white;
+  font-size: 15px;
+  padding: 0px 18px;
+  border-radius: 3px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+a.active,a:active{
+  background: #1b9bff;
+  padding: 5px 18px;
+  transition: .5s;
+}
+
+.checkbtn{
+  font-size: 20px;
+  color: white;
+  float: right;
+  line-height: 40px;
+  margin-right: 40px;
+  cursor: pointer;
+  display: none;
+}
+#check{
+  display: none;
+}
+@media (max-width: 952px){
+  label.logo{
+    font-size: 30px;
+    padding-left: 50px;
+  }
+  nav ul li a{
+    font-size: 16px;
+  }
+}
+@media (max-width: 858px){
+  .checkbtn{
+    display: block;
+  }
+  ul{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #2c3e50;
+    top: 80px;
+    left: -100%;
+    text-align: center;
+    transition: all .5s;
+  }
+  nav ul li{
+    display: block;
+    margin: 50px 0;
+    line-height: 30px;
+  }
+  nav ul li a{
+    font-size: 20px;
+  }
+  a:hover,a.active{
+    color: #0082e6;
+  }
+  
+#check:checked ~ ul{
+    left: 0;
+  }
+}
+@media (max-width: 952px){
+  label.logo{
+    font-size: 30px;
+    padding-left: 50px;
+  }
+  nav ul li a{
+    font-size: 16px;
+  }
+}
+@media (max-width: 858px){
+  .checkbtn{
+    display: block;
+  }
+  ul{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #2c3e50;
+    top: 80px;
+    left: -100%;
+    text-align: center;
+    transition: all .5s;
+  }
+  nav ul li{
+    display: block;
+    margin: 50px 0;
+    line-height: 30px;
+  }
+  nav ul li a{
+    font-size: 20px;
+  }
+  a:hover,a.active{
+    background: none;
+    color: #0082e6;
+  }
+  #check:checked ~ ul{
+    left: 0;
+  }
+}
+.first{
+  min-height: 90vh;
+  background-image:url("{% static 'images/home.jpg'%}");
+  background-repeat: no-repeat; 
+  background-size: 100% 100%;
+}
+.second{
+    margin-top: 10px;
+    border-radius: 10px;
+    min-height: 70vh;
+    background-image:url("{% static 'images/groups.jpg'%}");
+    background-repeat: no-repeat; 
+    background-size: 100% 100%;
+}
+.second h1{
+  padding: 10px 0 0 10px;
+}
+.second table{
+   float:right;
+   margin-top: 20px;
+   margin-right: 50px;
+   font-size: 15px;
+   border-collapse: collapse;
+   width:35%;
+}
+.second table th,td{
+   border: 2px solid #cfcece;
+   padding: 10px;
+   text-align: center;
+}
+.second table tr:nth-child(even){
+   background-color: #fefefe;
+}
+.second table tr:nth-child(odd){
+   background-color: #faa3a3;
+}
+.second table th{
+   background-color: #d12c08;
+}
+.third{
+  margin-top: 15px;
+  border-radius: 15px;
+  min-height: 60vh;
+  background-image:url("{% static 'images/register.jpg'%}");
+  background-repeat: no-repeat; 
+  background-size: 100% 100%;
+}
+.third h1{
+  padding: 40px 0 0 10px;
+}
+.third ul{
+  margin:40px 0 0 40px;
+  border-radius: 10px;
+  list-style-type: square;
+  background:rgba(175, 230, 247, 0.8);
+  padding: 30px 0 30px 50px;
+  width: 43%;
+}
+.third ul li{
+  font-size: 18px;
+  font-weight: 400;
+  padding: 10px 0 0 0;
+}
+.fourth{
+  min-height:5vh;
+  background:rgb(127, 126, 126);
+}
+.fourth p{
+  font-size: 15px;
+  text-align: center;
+  padding: 5px;
+  color: rgb(0, 0, 0);
+}
+</style>
+</head>
+<body>
+    <nav>
+      <input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <label class="logo">Blood donation</label>
+      <ul>
+        <li><a class="active" href="">Home</a></li>
+        <li><a href="{% url 'login' %}">Login</a></li>
+        <li><a href="{% url 'search' %}">Sreach</a></li>
+        <li><a href="{% url 'login' %}">Donate</a></li>
+      </ul>
+    </nav>
+    <div class="first">
+      
+    </div>
+    <div class="second">
+      <h1>Compatible Blood Type Donors</h1>
+      <table>
+         <tr><th>Blood Type</th><th>Donate To</th><th>Recieve From</th></tr>
+         <tr><td>A+</td><td>A+ AB+</td><td>A+ A- O+ O-</td></tr>
+         <tr><td>O+</td><td>O+ A+ B+ AB+</td><td>O+ O-</td></tr>
+         <tr><td>B+</td><td>A+ AB+</td><td>B+ B- O+ O-</td></tr>
+         <tr><td>AB+</td><td>AB+</td><td>Everyone</td></tr>
+         <tr><td>A-</td><td>A+ A- AB+ AB-</td><td>A- O-</td></tr>
+         <tr><td>O-</td><td>Everyone</td><td>O-</td></tr>
+         <tr><td>B-</td><td>B+ B- AB+ AB-</td><td>B- O-</td></tr>
+         <tr><td>AB-</td><td>AB+ AB-</td><td>AB- A- B- O-</td></tr>
+      </table>
+    </div>
+    <div class="third">
+          <h1>Blood donation eligiblity</h1>
+          <ul>
+            <li>Age of donor must be above 18 and below 65 years.</li>
+            <li>Body weight not less than 45 kgs.</li>
+            <li>Haemoglobin count that is not less than 12.5 g/dl.</li>
+            <li>Body Temperature-Normal (oral temperature not exceeding 37.50C).</li>
+            <li>Pulse of donor shall be normal.</li>
+            <li>The systolic and diastolic blood pressures are within normal limits.</li>
+          </ul>
+    </div>
+    <div class="fourth">
+         <p>Copyrights@ Blooddonation system</p>
+    </div>
+  </body>
+
+</html>

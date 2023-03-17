@@ -1,0 +1,184 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Registration</title>
+<style>
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  min-height: 100vh;
+  background-image:url("{% static 'images/register.jpg'%}");
+  background-repeat: no-repeat; 
+  background-size: 100% 100%;
+}
+.wrapper{
+  max-width: 800px;
+  width:100%;
+  padding: 20px 35px;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 7px 7px 10px rgba(0,0,0,0.15);
+}
+.wrapper header{
+  font-size: 25px;
+  font-weight: 500;
+  text-align: center;
+}
+.wrapper form{
+  margin: 35px 0 20px;
+}
+form .row{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0 12px 0;
+ 
+}
+form .row label{
+  font-size: 16px;
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+form .row .input_box{
+  width: 350px;
+  height: 100%;
+  margin-bottom: 15px;
+}
+form .row input,select{
+  outline: none;
+  resize: none;
+  height: 45px;
+  width:100%;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left:15px;
+  border: 1px solid #999;
+  border-bottom-width: 2px;
+  transition:all 0.3s ease;
+}
+select:required:invalid { 
+  color: gray; 
+}
+form .row input::-webkit-scrollbar{
+  width: 0px;
+}
+form button{
+  color: #fff;
+  border: none;
+  width: 100%;
+  height: 50px;
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  background: linear-gradient(-135deg, #c850c0, #4158d0);
+  transition: all 0.3s ease;
+}
+form button:hover{
+  background: linear-gradient(-135deg, #a5369e, #3c53c6);
+}
+form button:active{
+  transform: scale(0.95);
+}
+@media(max-width: 584px){
+ .wrapper{
+  max-width: 100%;
+}
+form .row .input-box{
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  form .row{
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+  .row::-webkit-scrollbar{
+    width: 5px;
+  }
+  }
+
+</style>
+</head>
+<body>
+    <div class="wrapper">
+    <header>Registration Form</header>
+
+    <form action="register" method="POST">
+      {% csrf_token %}
+        <div class="row">
+        <div class="input_box">
+          <label>Name:</label>
+          <input type="text" name="name" placeholder="Enter your name" required>
+        </div>
+        <div class="input_box">
+         <label>Blood Group:</label>
+         <select name="bloodgroup" required>
+          <option value="" disabled selected hidden>Select your bloodgroup</option>
+          <option value="A+">A+</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B-">B-</option>
+          <option value="O+">O+</option>
+          <option value="O-">O-</option>
+          <option value="AB-">AB-</option>
+          <option value="AB+">AB+</option>
+        </select>
+        </div>
+         <div class="input_box">
+          <label>Age:</label>
+          <input type="number" name="age" placeholder="Enter your age" required>
+        </div>
+        <div class="input_box">
+          <label>Mobile:</label>
+          <input type="text" name="mobile" placeholder="Enter your mobile number" required>
+        </div>
+        <div class="input_box">
+          <label>Email:</label>
+          <input type="email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div class="input_box">
+          <label>Password:</label>
+          <input type="text" name="password" placeholder="set your password" required>
+        </div>
+        <div class="input_box">
+          <label>Confirm Password:</label>
+          <input type="password" name="password" placeholder="set your password" required>
+        </div>
+        <div class="input_box">
+          <label>village:</label>
+          <input type="text" name="village" placeholder="Enter your village name" required>
+        </div>
+        <div class="input_box">
+          <label>Mandal:</label>
+          <input type="text" name="mandal" placeholder="Enter your mandal name" required>
+        </div>
+        <div class="input_box">
+        <label>Pincode:</label>
+        <input type="text" name="pincode" placeholder="Enter your pincode" required>
+        </div>
+        <button type="submit">Register</button>
+    </div>
+    </form>
+    {% if messages %}
+      {% for message in messages %} 
+             {{ message }}
+      {% endfor %}
+    {% endif %}  
+</div>
+</body>
+</html>
