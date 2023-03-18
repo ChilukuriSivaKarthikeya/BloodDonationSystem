@@ -187,7 +187,7 @@ def forgot(request):
         if otp == OTP:
             global obj
             obj=user
-            return render(request,"userpage.html",{'object':obj})
+            return redirect("user")
         else:
           messages.error(request,'Wrong OTP')
           return render(request,"otplogin.html")
