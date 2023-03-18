@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 from decouple import config
+import storages
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS =  ['localhost', '127.0.0.1']
 
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -116,14 +118,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
-STATIC_URL = '/static/'
-STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
-MEDIA_ROOT=os.path.join(BASE_DIR,'media')
-MEDIA_URL="/media/"
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -133,5 +127,25 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER ='chsivakarthikeya@gmail.com'
+EMAIL_HOST_USER ='blooddonationsystemteam@gmail.com'
 EMAIL_HOST_PASSWORD =config('EMAIL_HOST_PASSWORD')
+
+AWS_STORAGE_BUCKET_NAME = 'blooddonation'
+AWS_S3_REGION_NAME = 'us-east-2'  # e.g. us-east-2
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY =config('AWS_SECRET_ACCESS_KEY') 
+
+AWS_S3_CUSTOM_DOMAIN = 'blooddonation.s3.us-east-2.amazonaws.com'
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.2/howto/static-files/
+
+STATIC_URL = AWS_S3_CUSTOM_DOMAIN+"/static/"
+STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
+
+MEDIA_URL=AWS_S3_CUSTOM_DOMAIN+"/media/"
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')
