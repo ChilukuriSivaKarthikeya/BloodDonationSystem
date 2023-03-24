@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <style>
-@import url("https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@400;500&display=swap");
 *{
   padding: 0;
   margin: 0;
@@ -316,7 +315,7 @@ form  input{
     <form id="search" action="{% url 'usersearch' %}" method="POST">
       {% csrf_token %}
       <input type="text" name="element" value="{{search}}" placeholder="Search.." required>
-      <button onclick="change()"><i class="fa fa-search"></i></button>
+      <button onclick="perform()"><i class="fa fa-search"></i></button>
       <label>Apply Filter</label>
       <select name="bloodgroup" onchange="perform()">
         <option value="all" selected>Bloodgroup</option>
