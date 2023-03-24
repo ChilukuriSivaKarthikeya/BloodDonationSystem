@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Search</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <style>
@@ -113,6 +113,8 @@ a.active,a:active{
 }
 .sub-menu{
   background: #fff;
+  border: none;
+  border-radius: 8px;
   padding: 20px;
   margin:10px;
 }
@@ -311,12 +313,12 @@ form  input{
       </div>
   </nav>
   <div class="form">
-    <form id="search" action="usersearch" method="POST">
+    <form id="search" action="{% url 'usersearch' %}" method="POST">
       {% csrf_token %}
       <input type="text" name="element" value="{{search}}" placeholder="Search.." required>
       <button onclick="change()"><i class="fa fa-search"></i></button>
       <label>Apply Filter</label>
-      <select name="bloodgroup" onchange="change()">
+      <select name="bloodgroup" onchange="perform()">
         <option value="all" selected>Bloodgroup</option>
         <option value="A+">A+</option>
         <option value="A-">A-</option>
@@ -350,9 +352,10 @@ form  input{
   </div>
 </body>
 <script>
-  function change(){
+  function perform(){
     document.getElementById("search").submit();
   }
+
   let subMenu=document.getElementById("submenu");
   function change(){
       subMenu.classList.toggle("open-menu");
