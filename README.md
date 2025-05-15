@@ -5,10 +5,9 @@ The **Blood Donation System** is a web-based platform that helps users find bloo
 ## 🚀 Features
 
 - Donor registration and management
-- Blood request form for hospitals or individuals
-- Admin dashboard to monitor donations and requests
+- Blood request with details
 - Search for donors by blood group and location
-- Email notifications (if configured)
+- Email notifications 
 
 ## 🛠️ Built With
 
@@ -21,10 +20,10 @@ The **Blood Donation System** is a web-based platform that helps users find bloo
 ### 🔐 Login Page
 <img src="screenshots/login.png" alt="Login Page" width="600"/>
 
-### 🩸 Donor List
+### 🩸 Home Page
 <img src="screenshots/home.png" alt="Donor List" width="600"/>
 
-### 🧾 Blood Request Form
+### 🧾 Donors List
 <img src="screenshots/donors.png" alt="Blood Request Form" width="600"/>
 
 ## 📦 Installation
