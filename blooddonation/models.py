@@ -13,5 +13,6 @@ class Donors(models.Model):
      mandal=models.CharField(max_length=30)
      pincode=models.IntegerField()
      status=models.CharField(max_length=10,default="False")
-     
+     class Meta:
+          db_table = 'blooddonation_donors'
 

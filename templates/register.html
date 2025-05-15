@@ -118,7 +118,7 @@ form .row .input-box{
     <div class="wrapper">
     <header>Registration Form</header>
 
-    <form action="register" method="POST">
+    <form action="register" method="POST" onsubmit="return validate()">
       {% csrf_token %}
         <div class="row">
         <div class="input_box">
@@ -153,7 +153,7 @@ form .row .input-box{
         </div>
         <div class="input_box">
           <label>Password:</label>
-          <input type="text" name="password" placeholder="set your password" required>
+          <input type="password" name="password" placeholder="set your password" required>
         </div>
         <div class="input_box">
           <label>Confirm Password:</label>
@@ -181,4 +181,15 @@ form .row .input-box{
     {% endif %}  
 </div>
 </body>
+<script>
+  function validate(){
+  var p1=getElementByName("password1");
+  var p2=getElementByName("password2");
+  if(p1===p2)
+     return true;
+  else{
+    return false;
+  }
+}
+</script>
 </html>

@@ -20,11 +20,11 @@ body{
   background-image:url("{% static 'images/search.jpg'%}");
   background-repeat: no-repeat; 
   background-size: 100% 100%; */
-  background-color: antiquewhite;
+  background-color: #F0F4FF;
 }
 nav{
   background: linear-gradient(-135deg, #26a9fa, #232a4e);
-  height: 40px;
+  height: 50px;
   width: 100%;
   position: sticky;
 }
@@ -82,8 +82,8 @@ a.active,a:active{
 }
 .card {
   position: relative;
-  background: #ecf0f3;
-  height: 18rem;
+  background: #fff;
+  height: 15rem;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -117,7 +117,7 @@ a.active,a:active{
 }
 
 .card__name {
-  margin-top:15px;
+  margin-top:20px;
   font-size: 1em;
 }
 b{
@@ -134,11 +134,12 @@ b{
   margin-top: 50px;
 }
 form  input{
-  margin-left:550px;
+  margin-left:500px;
   border-radius:5px;
   font-size: 19px;
   padding: 8px;
   border: none;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
  }
  form label{
   margin-left: 330px;
@@ -156,10 +157,11 @@ form  input{
  form button{
   padding: 8px 10px;
   font-size: 19px;
+  color:#fff;
   border-radius:5px;
   border: none;
   cursor: pointer;
-  background-color: #bebdbd;
+  background-color: #0a70dd;
  }
  form input:hover{
   background: white;
@@ -187,8 +189,8 @@ form  input{
   <div class="form">
   <form id="search" action="search" method="POST">
     {% csrf_token %}
-    <input type="text" name="element" value="{{search}}" placeholder="Search.." required>
-    <button onclick="change()"><i class="fa fa-search"></i></button>
+    <input type="text" name="element" value="{{search}}" placeholder="Search here..." required>
+    <button onclick="change()">Search</button>
     <label>Apply Filter</label>
     <select name="bloodgroup" onchange="change()">
       <option value="all" selected>Bloodgroup</option>
@@ -215,9 +217,8 @@ form  input{
     <p class="card__name"><b>Blood Group: </b>{{i.bloodgroup}}</p>
     <p class="card__name"><b>Mobile: </b>{{i.number}}</p>
     <p class="card__name"><b>Address: </b>{{i.village}},{{i.pincode}}</p>
-    <p class="card__name"><b>Ready to Donate</b></p>
     <div class="overlay">
-      <div class="text">Donations:</div>
+      <div class="text">Ready to Donate</div>
     </div>
   </div>
   {% endfor %} 

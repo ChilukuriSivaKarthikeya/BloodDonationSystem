@@ -133,13 +133,13 @@ def donate(request):
       global obj
       if "active" in request.POST:
         inactive(obj)
-        messages.success(request, 'your are now inactive status')
+        messages.success(request, 'you are now inactive status')
       elif "inactive" in request.POST:
         if obj.status=="True":
-          messages.info(request,"Already active status")
+          messages.info(request,"Already you are in active status")
         else:
           active(obj)
-          messages.success(request, 'Thankyou for showing interest to donate')
+          messages.success(request, 'Thankyou for your Humanity to donate')
     return render(request,"donate.html",{"object":obj})
 def reset(request):
    if request.method=="POST":

@@ -79,16 +79,16 @@ WSGI_APPLICATION = 'donateblood.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-'''DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'djongo',
             'NAME': 'first',
     }
-}'''
-
-DATABASES = {
-    'default': dj_database_url.parse(config('DATABASE_URL'))
 }
+
+'''DATABASES = {
+    'default': dj_database_url.parse(config('DATABASE_URL'))
+}'''
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -134,22 +134,24 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER ='blooddonationsystemteam@gmail.com'
 EMAIL_HOST_PASSWORD =config('EMAIL_HOST_PASSWORD')
 
-AWS_STORAGE_BUCKET_NAME = 'blooddonation'
+'''AWS_STORAGE_BUCKET_NAME = 'blooddonation'
 AWS_S3_REGION_NAME = 'us-east-2'  # e.g. us-east-2
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY =config('AWS_SECRET_ACCESS_KEY') 
 
 AWS_S3_CUSTOM_DOMAIN = 'blooddonation.s3.us-east-2.amazonaws.com'
-AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=0, no-cache, no-store, must-revalidate'}
     
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'''
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = AWS_S3_CUSTOM_DOMAIN+"/static/"
+#STATIC_URL = AWS_S3_CUSTOM_DOMAIN+"/static/"
+STATIC_URL = "/static/"
 STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
 
-MEDIA_URL=AWS_S3_CUSTOM_DOMAIN+"/media/"
+#MEDIA_URL=AWS_S3_CUSTOM_DOMAIN+"/media/"
+MEDIA_URL="/media/"
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')

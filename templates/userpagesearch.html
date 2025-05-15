@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <style>
 *{
@@ -20,11 +20,11 @@ body{
   background-image:url("{% static 'images/search.jpg'%}");
   background-repeat: no-repeat; 
   background-size: 100% 100%; */
-  background: #eceaff;
+  background: #F0F4FF;
 }
 nav{
   background:linear-gradient(-135deg, #108cd8, #232a4e);
-  height: 40px;
+  height: 50px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -178,16 +178,17 @@ font-weight: 500;
 }
 .card {
   position: relative;
-  background: #ecf0f3;
-  height: 18rem;
+  height: 15rem;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: left;
-  padding: 20px;
-  box-shadow: -3px -3px 7px rgba(0,0,0,0.1),
-              3px 3px 5px rgba(0,0,0,0.1);
+  padding: 30px 20px;
+  background: #ecf0f3;
+  box-shadow: -2px -2px 5px #ffffff,
+                       3px 3px 5px #ceced1;
+  
   color: #31344b;
 }
 .overlay{
@@ -230,11 +231,12 @@ b{
   margin-top: 50px;
 }
 form  input{
-  margin-left:550px;
+  margin-left:500px;
   border-radius:5px;
   font-size: 19px;
   padding: 8px;
-  border: none;
+  border: 1px solid #4070f4;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
  }
  form label{
   margin-left: 330px;
@@ -252,18 +254,20 @@ form  input{
  form button{
   padding: 8px 10px;
   font-size: 19px;
+  font-weight: 400;
+  color: #fff;
   border-radius:5px;
   border: none;
   cursor: pointer;
-  background-color: #bebdbd;
+  background-color:#4070f4;
  }
  form input:hover{
-  background: white;
-  border: 1px solid rgb(10, 10, 10);
+  background: rgb(255, 253, 253);
  }
  form button:hover{
-  background: #888888;
+  background: #0b3fe9;
  }
+ 
 </style>
 </head>
 <body>
@@ -298,7 +302,7 @@ form  input{
             <p>Edit profile</p>
             <span><i class='fas fa-angle-right'></i></span>
            </a>
-           <a href="" class="sub-menu-link">
+           <a href="{% url 'reset' %}" class="sub-menu-link">
             <img src="{% static 'images/password.png'%}">
             <p>Reset password</p>
             <span><i class='fas fa-angle-right'></i></span>
@@ -314,8 +318,8 @@ form  input{
   <div class="form">
     <form id="search" action="{% url 'usersearch' %}" method="POST">
       {% csrf_token %}
-      <input type="text" name="element" value="{{search}}" placeholder="Search.." required>
-      <button onclick="perform()"><i class="fa fa-search"></i></button>
+      <input type="text" name="element" value="{{search}}" placeholder="Search here..." required>
+      <button onclick="perform()">Search</button>
       <label>Apply Filter</label>
       <select name="bloodgroup" onchange="perform()">
         <option value="all" selected>Bloodgroup</option>
